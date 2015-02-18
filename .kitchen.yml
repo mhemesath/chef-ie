@@ -1,0 +1,16 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: windows-2012R2
+
+suites:
+  - name: ie_test
+    run_list:
+      - recipe[ie_test::default]
+      - recipe[ie_test::version]
+    attributes:
