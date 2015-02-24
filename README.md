@@ -19,7 +19,7 @@ A `ie_version` method is also available to retrieve the exact version of Interne
 
 ## Requirements
 
-- Chef 11
+- Chef 11.6.0 or higher (includes a built-in registry_key resource)
 
 ## Platforms
 

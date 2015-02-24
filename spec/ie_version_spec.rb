@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'ie_test::default' do
+describe 'ie_test::ie_version' do
   let(:chef_run) do
     ChefSpec::SoloRunner.new(platform: 'windows', version: '2008R2') do
       allow_any_instance_of(Chef::Recipe).to receive(:ie_version).and_return('11.0.0.0')
