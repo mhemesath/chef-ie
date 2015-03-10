@@ -5,7 +5,6 @@ describe 'ie::back_forward_cache' do
     let(:chef_run) do
       ChefSpec::SoloRunner.new(platform: 'windows', version: '2008R2') do |node|
         node.set['ie']['back_forward_cache'] = true
-        # node.set['kernel']['machine'] = 'x86_64'
       end.converge(described_recipe)
     end
 

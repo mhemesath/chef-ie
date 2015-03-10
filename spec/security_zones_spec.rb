@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'ie::enable_protected_mode' do
+describe 'ie::security_zones' do
   context 'windows' do
     let(:chef_run) do
       ChefSpec::SoloRunner.new(platform: 'windows', version: '2008R2') do
@@ -32,7 +32,7 @@ describe 'ie::enable_protected_mode' do
     end
 
     it 'should warn if not Windows platform' do
-      expect(chef_run).to write_log('Recipe ie::enable_protected_mode is only available for Windows platforms!')
+      expect(chef_run).to write_log('Recipe ie::security_zones is only available for Windows platforms!')
     end
   end
 end

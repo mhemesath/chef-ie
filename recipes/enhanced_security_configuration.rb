@@ -16,11 +16,18 @@ if platform?('windows')
     only_if { registry_key_exists?(administrators) }
   end
 
-  ieharden = 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap'
-  registry_key ieharden do
+  cu_ieharden = 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap'
+  registry_key cu_ieharden do
     values [{ name: 'IEHarden', type: :dword, data: value }]
     action :create
-    only_if { registry_key_exists?(ieharden) }
+    only_if { registry_key_exists?(cu_ieharden) }
+  end
+
+  lm_ieharden = 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap'
+  registry_key lm_ieharden do
+    values [{ name: 'IEHarden', type: :dword, data: value }]
+    action :create
+    only_if { registry_key_exists?(lm_ieharden) }
   end
 else
   log 'Recipe ie::enhanced_security_configuration is only available for Windows platforms!' do
