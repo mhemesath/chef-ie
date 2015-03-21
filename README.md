@@ -9,13 +9,17 @@
 [github]: https://github.com/dhoer/chef-ie/issues
 
 Configures Internet Explorer to aid tools like [Selenium](http://www.seleniumhq.org/).
-The attribute defaults in this cookbook should always default to the most secure settings by convention.
 
-Selenium requires protected mode in Internet Explorer to be set the same across
-[zones](http://jimevansmusic.blogspot.in/2012/08/youre-doing-it-wrong-protected-mode-and.html).
-This cookbooks enables protected mode across all zones by default.
+The following recipes are available for configuring Internet Explorer:
+
+- enhanced_security_configuration - Enable/Disable IE Enhanced Security Configuration (IE ESC)
+- feature_bfcache - Enable/Disable IE Feature Back-Forward Cache
+- security_zones - Configure IE Local Home, Internet, Local Internet, Trusted Sites, and Restricted Sites
+Security Zones Policies
 
 A `ie_version` method is also available to retrieve the exact version of Internet Explorer installed.
+
+Tested against IE 11 on Windows Server 2012 R2.
 
 ## Requirements
 
@@ -27,25 +31,46 @@ A `ie_version` method is also available to retrieve the exact version of Interne
 
 ## Usage
 
-Just include `recipe[ie]` in your run_list to configure Internet Explorer.
+Add `ie` as a dependency to make method `ie_version` available for use.
 
-
-The following example retrieves the version installed by using `ie_version` method:
-
+Retrieve current version installed:
 ```ruby
 v = ie_version
 ```
 
-## Attributes
+## Recipes
 
-- `node['ie']['enable_protected_mode']['internet']` - Enable protected mode for internet zone.  Defaults to `true`.
-- `node['ie']['enable_protected_mode']['local_internet']` - Enable protected mode for local internet zone.
-Defaults to `true`.
-- `node['ie']['enable_protected_mode']['trusted_sites']` - Enable protected mode for trusted sites zone.
-Defaults to `true`.
-- `node['ie']['enable_protected_mode']['restricted_sites']` - Enable protected mode for restricted sites zone.
-Defaults to `true`.
 
+### enhanced_security_configuration
+
+Enable/Disable Internet Explorer Enhanced Security Configuration (IE ESC).
+
+#### Attributes
+- `node['ie']['enhanced_security_configuration']` - Defaults to `true`
+
+
+### feature_bfcache
+
+Enable/Disable IE Feature Back-Forward Cache.  Allows drivers to maintain a connection to IE.
+
+#### Attributes
+- `node['ie']['feature_bfcache']` - Defaults to `false`
+
+
+### security_zones
+
+Configure IE Local Home, Internet, Local Internet, Trusted Sites, and Restricted Sites Security Zones Policies.
+See Zones section in http://support.microsoft.com/kb/182569 for a complete listing of security zone settings.
+
+A setting of zero sets a specific action as permitted, a setting of one causes a prompt to appear, and a setting
+of three prohibits the specific action.
+
+#### Attributes
+- `node['ie']['zone']['local_home']` - Set security for local home zone.  Defaults to Enable Protected Mode.
+- `node['ie']['zone']['internet']` - Set security for internet zone.  Defaults to Enable Protected Mode.
+- `node['ie']['zone']['local_internet']` - Set security for local internet zone. Defaults to Enable Protected Mode.
+- `node['ie']['zone']['trusted_sites']` - Set security for trusted sites zone. Defaults to Enable Protected Mode.
+- `node['ie']['zone']['restricted_sites']` - Set security for restricted sites zone. Defaults to Enable Protected Mode.
 
 ## Getting Help
 

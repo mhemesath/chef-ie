@@ -1,4 +1,7 @@
 def ie_version
   return unless platform_family?('windows')
-  Registry.get_values('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer', 'svcVersion')
+  registry_get_values('HKLM\SOFTWARE\Microsoft\Internet Explorer').each do |value|
+    return value[:data] if value[:name] == 'svcVersion'
+  end
+  ''
 end
