@@ -12,10 +12,12 @@ Configures Internet Explorer to aid tools like [Selenium](http://www.seleniumhq.
 
 The following recipes are available for configuring Internet Explorer:
 
-- enhanced_security_configuration - Enable/Disable IE Enhanced Security Configuration (IE ESC)
-- feature_bfcache - Enable/Disable IE Feature Back-Forward Cache
-- security_zones - Configure IE Local Home, Internet, Local Internet, Trusted Sites, and Restricted Sites
-Security Zones Policies
+- **[enhanced_security_configuration](https://github.com/dhoer/chef-ie#enhanced_security_configuration)** -
+Enable/Disable IE Enhanced Security Configuration (IE ESC)
+- **[feature_bfcache](https://github.com/dhoer/chef-ie#feature_bfcache)** - Enable/Disable IE Feature Back-Forward
+Cache
+- **[security_zones](https://github.com/dhoer/chef-ie#security_zones)** - Configure IE Security Zones Policies;
+Local Home, Internet, Local Internet, Trusted Sites, and Restricted Sites
 
 A `ie_version` method is also available to retrieve the exact version of Internet Explorer installed.
 
@@ -45,7 +47,10 @@ v = ie_version
 
 Enable/Disable Internet Explorer Enhanced Security Configuration (IE ESC).
 
+Note this sets HKEY_CURRENT_USER keys, so it configures only the user that the chef-client runs as.
+
 #### Attributes
+
 - `node['ie']['enhanced_security_configuration']` - Defaults to `true`
 
 
@@ -54,23 +59,29 @@ Enable/Disable Internet Explorer Enhanced Security Configuration (IE ESC).
 Enable/Disable IE Feature Back-Forward Cache.  Allows drivers to maintain a connection to IE.
 
 #### Attributes
+
 - `node['ie']['feature_bfcache']` - Defaults to `false`
 
 
 ### security_zones
 
-Configure IE Local Home, Internet, Local Internet, Trusted Sites, and Restricted Sites Security Zones Policies.
-See Zones section in http://support.microsoft.com/kb/182569 for a complete listing of security zone settings.
+Configure IE Security Zones Policies (REG_DWORD types only); Local Home, Internet, Local Internet, Trusted Sites, and
+Restricted Sites. See Zones section in http://support.microsoft.com/kb/182569 for a complete listing of security zone
+settings.
 
 A setting of zero sets a specific action as permitted, a setting of one causes a prompt to appear, and a setting
 of three prohibits the specific action.
 
+Note this sets HKEY_CURRENT_USER keys, so it configures only the user that the chef-client runs as.
+
 #### Attributes
-- `node['ie']['zone']['local_home']` - Set security for local home zone.  Defaults to Enable Protected Mode.
-- `node['ie']['zone']['internet']` - Set security for internet zone.  Defaults to Enable Protected Mode.
-- `node['ie']['zone']['local_internet']` - Set security for local internet zone. Defaults to Enable Protected Mode.
-- `node['ie']['zone']['trusted_sites']` - Set security for trusted sites zone. Defaults to Enable Protected Mode.
-- `node['ie']['zone']['restricted_sites']` - Set security for restricted sites zone. Defaults to Enable Protected Mode.
+
+- `node['ie']['zone']['local_home']` - Configure local home zone.  Defaults to `{}`.
+- `node['ie']['zone']['internet']` - Configure internet zone.  Defaults to `2500` (Enable Protected Mode).
+- `node['ie']['zone']['local_internet']` - Configure local internet zone. Defaults `2500` (Enable Protected Mode).
+- `node['ie']['zone']['trusted_sites']` - Configure trusted sites zone. Defaults to `2500` (Enable Protected Mode).
+- `node['ie']['zone']['restricted_sites']` - Configure restricted sites zone. Defaults to `2500` (Enable Protected
+Mode).
 
 ## Getting Help
 
