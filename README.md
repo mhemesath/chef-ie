@@ -36,6 +36,7 @@ Tested against IE 11 on Windows Server 2012 R2.
 Add `ie` as a dependency to make method `ie_version` available for use.
 
 Retrieve current version installed:
+
 ```ruby
 v = ie_version
 ```
