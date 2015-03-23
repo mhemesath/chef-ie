@@ -1,4 +1,7 @@
 # https://code.google.com/p/selenium/wiki/InternetExplorerDriver#Required_Configuration
+node.set['ie']['enhanced_security_configuration'] = false
+include_recipe 'ie::enhanced_security_configuration'
+
 major_version = ie_version.split('.')[0].to_i
 
 # On IE 7 or higher, you must set the Protected Mode settings for each zone to be the same value. The value can be on

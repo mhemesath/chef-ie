@@ -13,7 +13,7 @@ Configures Internet Explorer to aid tools like [Selenium](http://www.seleniumhq.
 The following recipes are available for configuring Internet Explorer:
 
 - **[enhanced_security_configuration](https://github.com/dhoer/chef-ie#enhanced_security_configuration)** -
-Enable/Disable IE Enhanced Security Configuration (IE ESC)
+Enable/Disable IE Enhanced Security Configuration
 - **[feature_bfcache](https://github.com/dhoer/chef-ie#feature_bfcache)** - Enable/Disable IE Feature Back-Forward
 Cache
 - **[security_zones](https://github.com/dhoer/chef-ie#security_zones)** - Configure IE Security Zones Policies;
@@ -41,30 +41,28 @@ Retrieve current version installed:
 v = ie_version
 ```
 
-## Recipes
 
+## enhanced_security_configuration
 
-### enhanced_security_configuration
-
-Enable/Disable Internet Explorer Enhanced Security Configuration (IE ESC).
+Enable/Disable Internet Explorer Enhanced Security Configuration.
 
 Note this sets HKEY_CURRENT_USER keys, so it configures only the user that the chef-client runs as.
 
-#### Attributes
+### Attributes
 
 - `node['ie']['enhanced_security_configuration']` - Defaults to `true`
 
 
-### feature_bfcache
+## feature_bfcache
 
 Enable/Disable IE Feature Back-Forward Cache.  Allows drivers to maintain a connection to IE.
 
-#### Attributes
+### Attributes
 
 - `node['ie']['feature_bfcache']` - Defaults to `false`
 
 
-### security_zones
+## security_zones
 
 Configure IE Security Zones Policies (REG_DWORD types only); Local Home, Internet, Local Internet, Trusted Sites, and
 Restricted Sites. See Zones section in http://support.microsoft.com/kb/182569 for a complete listing of security zone
@@ -75,7 +73,7 @@ of three prohibits the specific action.
 
 Note this sets HKEY_CURRENT_USER keys, so it configures only the user that the chef-client runs as.
 
-#### Attributes
+### Attributes
 
 - `node['ie']['zone']['local_home']` - Configure local home zone.  Defaults to `{}`.
 - `node['ie']['zone']['internet']` - Configure internet zone.  Defaults to `2500` (Enable Protected Mode).
