@@ -3,13 +3,11 @@ require 'spec_helper'
 describe 'ie::security_zones' do
   context 'windows' do
     let(:chef_run) do
-      ChefSpec::SoloRunner.new(platform: 'windows', version: '2008R2') do
-        allow_any_instance_of(Chef::DSL::RegistryHelper).to receive(:registry_key_exists?).and_return(true)
-      end.converge(described_recipe)
+      ChefSpec::SoloRunner.new(platform: 'windows', version: '2008R2').converge(described_recipe)
     end
 
     it 'enables protected mode for internet' do
-      create_registry_key('HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3s')
+      create_registry_key('HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3')
         .with(name: '2500', type: :dword, data: 0)
     end
     it 'enables protected mode for local internet' do
