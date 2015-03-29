@@ -1,5 +1,5 @@
 # https://support.microsoft.com/en-us/kb/182569
-KEY = 'HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Zones'
+KEY = 'HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Zones'
 
 if platform?('windows')
   security_zones =  node['ie']['zone']
